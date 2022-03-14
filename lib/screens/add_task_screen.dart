@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../models/tasks_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-
-  Function () addTaskCallback;
-  Function (String d) setTaskText;
-
-  String newTaskDescription = '';
-
-  AddTaskScreen({required this.addTaskCallback, required this.setTaskText});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +32,9 @@ class AddTaskScreen extends StatelessWidget {
             TextField(
               autofocus: true,
               textAlign: TextAlign.center,
-              onChanged: (newText){ newTaskDescription = newText; setTaskText(newText); },
+              onChanged: (newText) {
+                Provider.of<TasksData>(context, listen: false).setNextTaskDescription(newText);
+              }
             ),
             FlatButton(
               child: Text(
@@ -47,8 +45,8 @@ class AddTaskScreen extends StatelessWidget {
               ),
               color: Colors.lightBlueAccent,
               onPressed: () {
-                print('About to invoke callback to add task called: $newTaskDescription');
-                addTaskCallback();
+                Provider.of<TasksData>(context, listen: false).addTask();
+                Navigator.pop(context);
               },
             )
           ]
