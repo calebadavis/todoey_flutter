@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AddTaskScreen extends StatelessWidget {
 
-  Function (String taskDescription) addTaskCallback;
+  Function () addTaskCallback;
   Function (String d) setTaskText;
 
   String newTaskDescription = '';
@@ -48,7 +48,7 @@ class AddTaskScreen extends StatelessWidget {
               color: Colors.lightBlueAccent,
               onPressed: () {
                 print('About to invoke callback to add task called: $newTaskDescription');
-                addTaskCallback(newTaskDescription);
+                addTaskCallback();
               },
             )
           ]

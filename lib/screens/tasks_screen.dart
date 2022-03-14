@@ -21,7 +21,7 @@ class _TasksScreenState extends State<TasksScreen> {
     newTaskDescription = d;
   }
 
-  void addTaskToList(String taskDescription) {
+  void addTaskToList() {
     setState(() {
       print('Adding task: $newTaskDescription');
       tasksList.add(Task(name: newTaskDescription));
